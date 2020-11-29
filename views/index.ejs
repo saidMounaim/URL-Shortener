@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css" />
+		<title>Url Shortner</title>
+	</head>
+	<body>
+		<div class="container my-3">
+			<h1>Url Shrinker</h1>
+			<form action="/shortUrl" method="POST" class="my-4 form-inline">
+				<label class="sr-only" for="fullUrl">Url</label>
+				<input
+					required
+					class="form-control mr-2 col"
+					type="url"
+					name="fullUrl"
+					id="fullUrl"
+					placeholder="Url"
+				/>
+				<button class="btn btn-success" type="submit">Shrink</button>
+			</form>
+			<table class="table table-striped table-responsive">
+				<thead>
+					<tr>
+						<th>Full Url</th>
+						<th>Short Url</th>
+						<th>Clicks</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% shortsUrl.forEach(short => { %>
+					<tr>
+						<td><a href="<%= short.full %>"><%= short.full %></a></td>
+						<td><a href="<%= short.short %>" target="_blank"><%= short.short %></a></td>
+						<td><%= short.clicks %></td>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
